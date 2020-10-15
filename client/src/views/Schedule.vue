@@ -8,74 +8,102 @@
         
         
         <h3 class="title is-5 has-text-centered has-text-success mb-5">
-          Input which workouts you wish to do on each day from the list below.
+          Select which workouts you wish to do today from the list below.
         </h3>
 
-      <div class="columns is-fluid">
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Sunday</p>
-                <Post />
+    <div>
+        <div class="list has-text-success">
+            <div class="innerList" v-for='item in listOne' :key='item.title'>
+                {{ item.title }}
+            </div>
+            Selected Workouts Appear Here
+        </div>
+        <h3 class="title is-2 has-text-centered has-text-success mb-5">List of Workouts:</h3>
+        <div class="list">
+            <div class="innerList" v-for='item in listTwo' :key='item.title'>
+                <button class="button is-success" @click="swap(item)" >
+                    {{ item.title }}
+                </button>
             </div>
         </div>
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Monday</p>
-                <Post />
-            </div>
-        </div>
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Tuesday</p>
-                <Post />
-            </div>
-        </div>
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Wednesday</p>
-                <Post />
-            </div>
-        </div>
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Thursday</p>
-                <Post />
-            </div>
-        </div>
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Friday</p>
-                <Post />
-            </div>
-        </div>
-        <div class="column">
-            <div class="box has-background-grey">
-                <p class="title is-5 has-text-success has-text-centered">Saturday</p>
-                <Post />
-            </div>
-        </div>
-      </div>
-      <h3 class="title is-2 has-text-centered has-text-success mb-6">List of Workouts:</h3>
+    </div>
     </div>
 
 </template>
 
+
+
 <script>
 
-    import Post from "@/components/Post";
-
     export default {
-        data(){
-            return{
-                posts
+        data (){
+            return {
+                items: [
+                {
+                    id: 0,
+                    title: '1 Mile Run',
+                    list: 2
+                },
+                {
+                    id: 1,
+                    title: 'Lunges',
+                    list: 2
+                },
+                {
+                    id: 2,
+                    title: 'Push-Ups',
+                    list: 2
+                },
+                {
+                    id: 3,
+                    title: 'Squats',
+                    list: 2
+                },
+                {
+                    id: 4,
+                    title: 'Sit-Ups',
+                    list: 2
+                },
+                {
+                    id: 5,
+                    title: 'Crunches',
+                    list: 2
+                }]
             }
         },
-        components:{
-            Post
-        }
+
+        computed: {
+            listOne () {
+            return this.items.filter(item => item.list === 1)
+            },
+            listTwo () {
+            return this.items.filter(item => item.list === 2)
+            },
+            
+            swap(){
+                if(item.list == 1){
+                    item.list = 2;
+                }
+                else{
+                    item.list = 1;
+                }
+            }
+            
+        },
     }
 </script>
 
-<style>
+<style scoped>
+  .list {
+    background-color:rgb(53, 51, 51);
+    margin-bottom: 15px;
+    padding: 10px;
+  }
 
+  .innerList {
+    background-color: rgb(128, 202, 150);
+    margin-bottom: 15px;
+    padding: 5px;
+  }
+  
 </style>

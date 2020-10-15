@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import session from '../models/session'
 import Schedule from '../views/Schedule.vue'
+import Report from '../views/Report.vue'
 
 
 Vue.use(VueRouter)
@@ -12,6 +13,7 @@ const routes = [
   {path: '/', name: 'Home', component: Home},
   {path: '/login', name: 'Login', component: Login},
   {path: '/schedule', name: 'Schedule', component: Schedule},
+  {path: '/report', name: 'Report', component: Report},
 
 
   {

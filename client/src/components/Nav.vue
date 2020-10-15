@@ -1,0 +1,75 @@
+<template>
+<form>
+<nav class="navbar container is-fixed-top is-info has-background-grey-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="../assets/logo.png" width="40" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" :class="{'is-active': isActive}" @click= "isActive = !isActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': isActive}">
+    <div class="navbar-start">
+      <router-link to="/" class="navbar-item has-text-success">Home</router-link>
+      <router-link to="/about" class="navbar-item has-text-success">About</router-link>
+      <router-link to="/schedule" class="navbar-item has-text-success">Schedule</router-link>
+
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link has-text-success">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <router-link to="/about" class="navbar-item">About</router-link>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <LoginBadge />
+      </div>
+    </div>
+  </div>
+</nav>
+</form>
+
+
+</template>
+
+<script>
+import LoginBadge from "@/components/LoginBadge";
+export default {
+  data: ()=> ({
+      isActive: false
+  }),
+  methods: {
+
+  },
+  components: {
+    LoginBadge
+  }
+}
+</script>
+
+<style>
+  form{
+    margin-bottom: 45px;
+  }
+</style>

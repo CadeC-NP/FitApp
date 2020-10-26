@@ -12,6 +12,9 @@
 
         </div>
         <div class="buttons" v-else>
+            <router-link to="/signUp" class="button has-text-success">
+                <strong>Sign-Up</strong>
+            </router-link>
             <router-link to="/login" class="button has-text-success">
                 <strong>Log-In</strong>
             </router-link>   

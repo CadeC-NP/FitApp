@@ -14,7 +14,9 @@
     <div>
         <div class="list has-text-success">
             <div class="innerList" v-for='item in listOne' :key='item.title'>
-                {{ item.title }}
+                <button class="button is-success" @click="swap(item)" >
+                    {{ item.title }}
+                </button>
             </div>
             Selected Workouts Appear Here
         </div>
@@ -80,7 +82,11 @@
             return this.items.filter(item => item.list === 2)
             },
             
-            swap(){
+            
+        },
+
+        methods:{
+            swap(item){
                 if(item.list == 1){
                     item.list = 2;
                 }
@@ -88,8 +94,7 @@
                     item.list = 1;
                 }
             }
-            
-        },
+        }
     }
 </script>
 

@@ -4,7 +4,7 @@ const router = express.Router();
 
 router  
     .get('/', (req,res, next)=>{
-        users.getAll().then(x=> res.send)(x.map(user=>({...user,Password:undefined}))).catch(next);
+        users.getAll().then(x=> res.send(x.map(user=>({ ...user, Password: undefined})))).catch(next);
     })
 
     .get('/:id', (req, res, next)=>{
@@ -29,28 +29,6 @@ router
         }).catch(next);
     })
 
-    .post('/register', (req,res,next)=>{
-        users.register(
-            req.body.FirstName,
-            req.body.LastName, 
-            req.body.DOB, 
-            req.body.Password, 
-            users.Types.USER,
-            req.body.Email,)
-        .then(newUser=>{
-            res.send(newUser);
-        }).catch(next);
-    })
-
-    .post('/login', (req,res,next)=>{
-        users.login(
-            req.body.Email,
-            req.body.password,)
-        .then(newUser=>{
-            res.send({...newUser,Password: undefined});
-        }).catch(next);
-    })
-
     .put('/:id', (req,res,next)=>{
         users.update(
             req.params.id,
@@ -63,3 +41,11 @@ router
             res.send(newUser);
         }).catch(next);
     })
+
+    .delete('/:id', (req, res, next) => {
+        users.remove(req.params.id).then(msg => {
+            res.send( msg );
+        }).catch(next);
+    })
+
+    module.exports = router;

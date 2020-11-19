@@ -5,7 +5,7 @@ const router = express.Router();
 router
 
     .get('/', (req, res, next)=>{
-        reactions.getAll().then(x=> res.send(x)).catch(next);
+        followers.getAll().then(x=> res.send(x)).catch(next);
     })
 
     .get('/:id', (req,res,next)=>{
@@ -13,36 +13,36 @@ router
         if(!id) 
         return next();
 
-        reactions.get(id).then(x=> res.send(x)).catch(next);
+        followers.get(id).then(x=> res.send(x)).catch(next);
     })
 
     .get('/search', (req,res,next)=> {
-        reactions.search(req.query.q).then(x=> res.send(x)).catch(next);
+        followers.search(req.query.q).then(x=> res.send(x)).catch(next);
     })
 
     .post('/', (req,res,next)=>{
-        reactions.add(
-            req.body.Emoji,
-            req.body.Workout_id,
-            req.body.Owner_id
+        followers.add(
+            req.body.Following_id,
+            req.body.Follower_id,
+            req.body.IsAccepted
         ).then(newUser => {
             res.send(newUser);
         }).catch(next);
     })
 
     .put('/:id', (req,res,next)=>{
-        reactions.update(
+        followers.update(
             req.params.id, 
-            req.body.Emoji,
-            req.body.Workout_id,
-            req.body.Owner_id
+            req.body.Following_id,
+            req.body.Follower_id,
+            req.body.IsAccepted
         ).then(newUser => {
             res.send(newUser);
         }).catch(next);
     })
 
     .delete('/:id', (req,res,next)=>{
-        reactions.remove(req.params.id).then(msg=>{
+        followers.remove(req.params.id).then(msg=>{
             res.send(msg);
         }).catch(next);
     })

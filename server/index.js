@@ -12,7 +12,14 @@ const port = process.env.PORT || 3000;
 console.log(process.env.TEST);
 
 app.use(express.json());
+app.use('/public',express.static( __dirname + '/public/'))
 app.use(express.static( __dirname + '/../docs/'));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(function(req, res, next) {
   const arr = (req.headers.authorization || "").split(" ");
@@ -26,11 +33,16 @@ app.get('/', (req, res, next) => {
   res.send('Hello Hudson Valley! You requested ' + req.url)
 })
 
-
 app.use('/users', users);
 app.use('/workouts', workouts);
 app.use('/comments', comments);
 app.use('/reactions', reactions);
+
+app.get('*', (req, res, next) => {
+  const filename = path.join(__dirname, '/../docs/index.html');
+  console.log(filename);
+  res.sendFile( filename );
+})
 
 app.use( (err, req, res, next) =>{
     console.log(err);

@@ -6,6 +6,10 @@ import session from '../models/session'
 import Schedule from '../views/Schedule.vue'
 import Report from '../views/Report.vue'
 import SignUp from '../views/SignUp.vue'
+import Workouts from '../views/Workouts.vue'
+import Users from '../views/Users.vue'
+
+
 
 
 Vue.use(VueRouter)
@@ -16,6 +20,8 @@ const routes = [
   {path: '/schedule', name: 'Schedule', component: Schedule},
   {path: '/report', name: 'Report', component: Report},
   {path: '/signUp', name: 'SignUp', component: SignUp},
+  {path: '/workouts', name: 'Workouts', component: Workouts},
+  {path: '/users', name: 'Users', component: Users},
 
 
   {

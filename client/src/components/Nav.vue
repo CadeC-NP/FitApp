@@ -18,6 +18,7 @@
       <router-link to="/" class="navbar-item has-text-success">Home</router-link>
       <router-link to="/about" class="navbar-item has-text-success">About</router-link>
       <router-link to="/schedule" class="navbar-item has-text-success">Schedule</router-link>
+      <router-link to="/workouts" class="navbar-item has-text-success">Workouts</router-link>
 
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -31,6 +32,18 @@
           </a>
           <a class="navbar-item">
             <router-link to="/report" class="navbar-item has-text-success">Report an Issue</router-link>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link has-text-success">
+          Admin
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            <router-link to="/users" class="navbar-item has-text-success">Users</router-link>
           </a>
         </div>
       </div>

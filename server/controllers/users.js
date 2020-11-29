@@ -17,6 +17,10 @@ router
         users.getTypes().then(x=> res.send(x)).catch(next);
     })
 
+    .get('/search', (req, res, next) => {
+        users.search(req.query.q).then(x=>res.send(x)).catch(next);
+    })
+
     .post('/', (req,res,next)=>{
         users.add(
             req.body.FirstName,
@@ -27,6 +31,28 @@ router
         .then(newUser=>{
             res.send(newUser);
         }).catch(next);
+    })
+
+    .post('/register', (req, res, next) => {
+        users.register(
+            req.body.FirstName,
+            req.body.LastName, 
+            req.body.DOB, 
+            req.body.Password, 
+            users.Types.USER,
+            req.body.Email 
+        ).then(newUser => {
+            res.send( { ...newUser, Password: undefined } );
+        }).catch(next)
+    })
+
+    .post('/login', (req, res, next) => {
+        users.login(
+            req.body.email,
+            req.body.password
+        ).then(newUser => {
+            res.send( { ...newUser, Password: undefined } );
+        }).catch(next)
     })
 
     .put('/:id', (req,res,next)=>{

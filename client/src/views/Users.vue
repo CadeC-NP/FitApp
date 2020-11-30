@@ -1,15 +1,15 @@
 <template>
   <div class="page">
-      <h2 class="title is-2 has-text-success has-text-centered">Users Page</h2>
+      <h2 class="title is-2 has-text-success mb-6 has-text-centered">Users Page</h2>
 
-        <table class="table is-narrow is-hoverable is-fullwidth">
+        <table class="table is-narrow has-background-grey-light is-hoverable is-fullwidth">
             <thead><tr>
-                <th>id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Password</th>
-                <th>DOB</th>
-                <th>Type</th>
+                <th class = "has-text-success-dark">id</th>
+                <th class = "has-text-success-dark">First Name</th>
+                <th class = "has-text-success-dark">Last Name</th>
+                <th class = "has-text-success-dark">Password</th>
+                <th class = "has-text-success-dark">DOB</th>
+                <th class = "has-text-success-dark">Type</th>
             </tr></thead>
             <tbody>
                 <tr v-for=" (x, i) in list " 

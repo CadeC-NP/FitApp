@@ -1,43 +1,51 @@
 <template>
     <div class="card">
-    <div class="card-image">
-        <figure class="image">
-        <img :src="workout.url">
-        </figure>
-    </div>
-    <div class="card-content">
-        <div class="media">
-        <div class="media-left">
-            <figure class="image is-48x48">
-            <img :src="workout.owner.profile" alt="Placeholder image">
-            </figure>
-        </div>
-        <div class="media-content">
-            <p class="title is-4">{{workout.owner.name}}</p>
-            <p class="subtitle is-6">@{{workout.owner.handle}}</p>
-        </div>
-        </div>
+        <div class="card-content">
+            <div class="media">
+            <div class="media-content">
+                <p class="title is-4">{{workout.Exercise_Type}}</p>
+                <p class="subtitle is-6">{{workout.PrimaryEmail}}</p>
+            </div>
+            </div>
 
-        <div class="content">
-        {{workout.message}}
-        <a href="#">#css</a> <a href="#">#responsive</a>
-        <br>
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            <div class="content">
+
+            {{workout.Note}}
+            
+            <time datetime="post.created_at">{{workout.created_at}}</time>
+            </div>
         </div>
-    </div>
+        <footer class="card-footer">
+            <a href="#" class="card-footer-item">Save</a>
+            <a href="#" class="card-footer-item">Edit</a>
+            <a href="#" class="card-footer-item">Delete</a>
+        </footer>
     </div>
 </template>
 
 <script>
+import { react, comment } from "../models/feed";
 export default {
+    data: ()=>({
+        commentText: ''
+    }),
     props: {
-        workout: Object
+        workout: Object,
+    },
+    methods: {
+        react(){
+            const that = this;
+            react(this.workout.id)
+            .then(x=> that.workout.Reactions += 1)
+            .catch(err=> console.error(err))
+        },
+        async comment(){
+            const response = await comment(this.workout.id, this.commentText);
+            this.workout.Comments.push(response);
+        }
     }
 }
 </script>
 
 <style>
-    .card{
-        margin-bottom: 30px;
-    }
 </style>

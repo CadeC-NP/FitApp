@@ -34,18 +34,16 @@ import {getList} from "@/models/users";
 import session from "@/models/session";
 export default {
     data(){
-        return {
-            list: []
+        return{
+            list:[]
         }
     },
     async created(){
         this.list = await getList(); 
     },
-    components: {
-        
+    components: {  
     },
     methods: {
-        
     }
 }
 </script>

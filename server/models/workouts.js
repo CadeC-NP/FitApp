@@ -1,11 +1,18 @@
 const mysql = require('./mysql');
+const cm = require('./ContactMethods');
 
 const Privacy_Levels = { HIDDEN: 0, ONLY_ME: 1, ONLY_FRIENDS: 2, PUBLIC: 4 };
 
 async function getAll(){
     console.log("called get all");
+    const sql = `
+    SELECT 
+        W.*, FirstName, LastName,
+        (SELECT Value FROM FITAPP_ContactMethods Where User_id = U.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = 1) as PrimaryEmail,
+        (SELECT COUNT(*) FROM FITAPP_Reactions WHERE Workout_id = W.id) as Reactions
+    FROM FITAPP_Workouts W Join FITAPP_Users U ON W.Owner_id = U.id`
 
-    return await mysql.query('SELECT * FROM FITAPP_Workouts');
+    return await mysql.query(sql);
 }
 
 async function get(){

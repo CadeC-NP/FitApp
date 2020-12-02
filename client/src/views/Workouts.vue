@@ -4,12 +4,10 @@
 
         <div class="columns">
             <div class="column">
-                <div class="card">
-                    <Workout v-for=" (x, i) in workouts " 
-                        :key="i"
-                        :i="i"
-                        :workout="x" /> 
-                </div>
+                <Workout v-for=" (x, i) in workout " 
+                    :key="i"
+                    :i="i"
+                    :post="x" />
             </div>
         </div>
     </div>
@@ -17,17 +15,17 @@
 
 <script>
 import Workout from "@/components/Workout";
-import {workouts} from "@/models/feed";
+import {getWorkouts} from "@/models/feed";
 import session from "@/models/session";
 export default {
     data(){
         return{
-            workouts: [],
+            workout: [],
         }
     },
 
     async created(){
-        this.workouts = await getWorkouts();
+        this.workout = await getWorkouts();
     },
 
     components:{

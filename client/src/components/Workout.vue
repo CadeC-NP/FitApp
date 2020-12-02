@@ -15,7 +15,7 @@
 
             <time datetime="post.created_at">{{workout.created_at}}</time>
             </div>
-            <div class="media" v-for="c in post.Comments" :key="c.id">
+            <div class="media" v-for="c in workout.Comments" :key="c.id">
                 <div class="media-content">
                     <b >{{c.FirstName}} {{c.LastName}} </b>
                     <span>{{c.Text}}</span>

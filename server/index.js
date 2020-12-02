@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res, next) => {
   res.send('Hello Hudson Valley! You requested ' + req.url)
-})
+});
 
 app.use('/users', users);
 app.use('/workouts', workouts);
@@ -43,13 +43,13 @@ app.get('*', (req, res, next) => {
   const filename = path.join(__dirname, '/../docs/index.html');
   console.log(filename);
   res.sendFile( filename );
-})
+});
 
 app.use( (err, req, res, next) =>{
     console.log(err);
     res.status(err.status || 500).send( { message: err.message } )
-} )
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
+});

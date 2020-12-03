@@ -1,7 +1,7 @@
 import {myFetch} from "./my-fetch";
 import session from "./session";
 
-export const getWorkouts = ()=> myFetch('workouts/byUser/1');
+export const getWorkouts = ()=> myFetch('workouts');
 
 export function react(workout_id){
     return myFetch('reactions', { Workout_id: workout_id, Owner_id: 1 })

@@ -24,6 +24,26 @@ async function get(){
     return rows[0];
 }
 
+async function getByUser(user_id){
+    console.log("Called Get All")
+    const sql = `
+        SELECT 
+            P.*, FirstName, LastName,
+            (SELECT Value FROM FITAPP_ContactMethods Where User_id = U.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = 1) as PrimaryEmail,
+            (SELECT COUNT(*) FROM FITAPP_Reactions WHERE Workout_id = P.id) as Reactions
+        FROM FITAPP_Workouts P Join FITAPP_Users U ON P.Owner_id = U.id
+        WHERE P.Owner_id = ?`
+        console.log(sql);
+
+        const workouts = await mysql.query(sql, [user_id]);
+
+        for (const p of workouts) {
+            p.Comments = await comments.getForWorkout(p.id); 
+        }
+
+    return workouts;
+}
+
 async function getTypes(){
     return await mysql.query('SELECT id, Name FROM FITAPP_Types WHERE Type_id = 3');
 }
@@ -49,4 +69,4 @@ async function remove(id){
     return await mysql.query(sql, [id]);
 }
 
-module.exports = {getAll, get, getTypes, add, update, remove, Privacy_Levels}
+module.exports = {getAll, get, getTypes, add, update, remove, getByUser, Privacy_Levels}

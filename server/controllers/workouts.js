@@ -15,6 +15,12 @@ router
         workouts.get(id).then(x=>res.send(x)).catch(next);
     })
 
+    .get('/byUser/:id', (req, res, next) => {
+        const id = +req.params.id;
+        if(!id) return next();
+        workouts.getByUser(id).then(x=> res.send(x)).catch(next);
+    })
+
     .get('/types', (req,res,next) =>{
         workouts.getTypes().then(x=> res.send(x)).catch(next);
     })

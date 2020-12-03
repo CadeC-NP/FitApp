@@ -17,6 +17,11 @@ async function get(id){
     return rows[0];
 }
 
+async function getNames(){
+    console.log("Called Get First Names")
+    return await mysql.query(`SELECT FirstName FROM FITAPP_Users`);
+}
+
 async function getTypes(){
     return await mysql.query(`SELECT id, Name FROM FITAPP_Types WHERE Type_id = 2`);
 }
@@ -65,4 +70,4 @@ async function remove(id){
 
 const search = async q => await mysql.query(`SELECT id, FirstName, LastName FROM FITAPP_Users WHERE LastName LIKE ? OR FirstName LIKE ?; `, [`%${q}%`, `%${q}%`]);
 
-module.exports = { getAll, get, add, update, remove, getTypes, search, login, register, Types}
+module.exports = { getAll, get, add, update, remove, getTypes, search, login, register,getNames, Types}

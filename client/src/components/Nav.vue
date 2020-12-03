@@ -19,6 +19,7 @@
       <router-link to="/about" class="navbar-item has-text-success">About</router-link>
       <router-link to="/schedule" class="navbar-item has-text-success">Schedule</router-link>
       <router-link to="/workouts" class="navbar-item has-text-success">Workouts</router-link>
+      <router-link to="/final" class="navbar-item has-text-success">Final</router-link>
 
 
       <div class="navbar-item has-dropdown is-hoverable">

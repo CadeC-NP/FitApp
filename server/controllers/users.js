@@ -17,6 +17,10 @@ router
         users.getTypes().then(x=> res.send(x)).catch(next);
     })
 
+    .get('/names', (req,res,next)=>{
+        users.getNames().then(x=> res.send(x)).catch(next);
+    })
+
     .get('/search', (req, res, next) => {
         users.search(req.query.q).then(x=>res.send(x)).catch(next);
     })

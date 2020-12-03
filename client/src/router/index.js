@@ -6,8 +6,8 @@ import session from '../models/session'
 import Schedule from '../views/Schedule.vue'
 import Report from '../views/Report.vue'
 import SignUp from '../views/SignUp.vue'
-import Workouts from '../views/Workouts.vue'
 import Users from '../views/Users.vue'
+import Final from '../views/Final.vue'
 
 
 
@@ -21,6 +21,8 @@ const routes = [
   {path: '/report', name: 'Report', component: Report},
   {path: '/signUp', name: 'SignUp', component: SignUp},
   {path: '/users', name: 'Users', component: Users},
+  {path: '/final', name: 'Final', component: Final},
+
 
   {
     path: '/workouts',

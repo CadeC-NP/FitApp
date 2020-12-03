@@ -3,10 +3,14 @@
 
 
         <div class="media" v-if="session.user">
-        
+        <div class="media-left">
+            <figure class="image">
+            <img :src="session.user.profile" alt="Placeholder image">
+            </figure>
+        </div>
         <div class="media-content">
             <p class="has-text-weight-bold has-text-light has-text-success">{{session.user.name}}</p>
-            <p class="is-size-7 has-text-success">@{{session.user.handle}}</p>
+            <p class="is-size-7 has-text-success">{{session.user.handle}}</p>
         </div>
 
 

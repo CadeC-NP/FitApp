@@ -34,14 +34,23 @@
 
 <script>
 import session from "@/models/session";
+import {login} from "@/models/users";
 let auth2 = null;
 
 export default {
+    data(){
+        return{
+            currUser:[]
+        }
+    },
+    async created(){
+        this.currUser = await login(); 
+    },
     methods: {
         login(){
             session.user = {
-                name: 'Cade Cabrera',
-                handle: 'cabreracade',
+                name: 'placeholder',//currUser.FirstName,
+                handle: 'placeholer', //currUser.Lastname,
                 profile: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/21370920_10209622095900406_1558557478066919662_n.jpg?_nc_cat=101&_nc_sid=730e14&_nc_ohc=SACDV3bx78gAX96KbJb&_nc_ht=scontent-lga3-1.xx&oh=47b81e9ad653b26796e4b0f8c5ccbb91&oe=5FACA43C'
             }
             this.$router.push('workouts');

@@ -17,14 +17,13 @@
             <time datetime="post.created_at">{{post.created_at}}</time>
             <br>
             {{post.Reactions}} people liked this
-            </div>
-            
             <div class="media" v-for="c in post.Comments" :key="c.id">
                 <div class="media-content">
                     <b >{{c.FirstName}} {{c.LastName}} </b>
                     <span>{{c.Text}}</span>
                 </div>
-            </div>   
+            </div> 
+            </div>  
 
             
         </div>

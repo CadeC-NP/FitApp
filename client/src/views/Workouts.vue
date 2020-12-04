@@ -4,7 +4,7 @@
 
         <div class="columns">
             <div class="column">
-                <Workout v-for=" (x, i) in workout " 
+                <Workout v-for=" (x, i) in workouts " 
                     :key="i"
                     :i="i"
                     :post="x" />
@@ -20,12 +20,12 @@ import session from "@/models/session";
 export default {
     data(){
         return{
-            workout: [],
+            workouts: [],
         }
     },
 
     async created(){
-        this.workout = await getWorkouts();
+        this.workouts = await getWorkouts();
     },
 
     components:{

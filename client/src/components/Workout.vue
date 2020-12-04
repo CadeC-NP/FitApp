@@ -3,19 +3,18 @@
         <div class="card-content">
             <div class="media">
             <div class="media-content">
-                <p class="title is-4">{{workout.FirstName}} {{workout.LastName}}</p>
-                <p class="subtitle is-6">{{workout.PrimaryEmail}}</p>
+                <p class="title is-4">{{post.FirstName}} {{post.LastName}}</p>
             </div>
             </div>
 
             <div class="content">
 
-            {{workout.Exercise_Type}}
-            {{workout.Note}}
+            {{post.Exercise_Type}}
+            {{post.Note}}
 
-            <time datetime="post.created_at">{{workout.created_at}}</time>
+            <time datetime="post.created_at">{{post.created_at}}</time>
             </div>
-            <div class="media" v-for="c in workout.Comments" :key="c.id">
+            <div class="media" v-for="c in post.Comments" :key="c.id">
                 <div class="media-content">
                     <b >{{c.FirstName}} {{c.LastName}} </b>
                     <span>{{c.Text}}</span>
@@ -58,19 +57,19 @@ export default {
         commentText: ''
     }),
     props: {
-        workout: Object,
+        post: Object,
         i: Number,
     },
     methods: {
         react(){
             const that = this;
-            react(this.workout.id)
-            .then(x=> that.workout.Reactions += 1)
+            react(this.post.id)
+            .then(x=> that.post.Reactions += 1)
             .catch(err=> console.error(err))
         },
         async comment(){
-            const response = await comment(this.workout.id, this.commentText);
-            this.workout.Comments.push(response);
+            const response = await comment(this.post.id, this.commentText);
+            this.post.Comments.push(response);
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-      <h2 class="title is-2 has-text-centered has-text-success">Workouts</h2>
+      <h2 class="title is-2 has-text-centered has-text-success mb-6">Workouts</h2>
 
         <div class="columns">
             <div class="column">

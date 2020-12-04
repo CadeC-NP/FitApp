@@ -1,5 +1,5 @@
 const express = require('express');
-const users = require('../models/reactions');
+const reactions = require('../models/reactions');
 const router = express.Router();
 
 router

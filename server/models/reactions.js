@@ -4,13 +4,13 @@ const Emojis = {LOVE: '❤️'};
 
 async function getAll(){
     console.log("called get all");
-    const sql = `SELECT P.*, FirstName, LastName FROM FITAPP_Reactions P Join FITAPP_Users U ON P.Owner_id = U.id`;
+    const sql = `SELECT W.*, FirstName, LastName FROM FITAPP_Reactions P Join FITAPP_Users U ON W.Owner_id = U.id`;
     
     return await mysql.query(sql);
 }
 
 async function getForWorkout(Workout_id){
-    const sql = `SELECT P.*, FirstName, LastName FROM FITAPP_Reactions P Join FITAPP_Users U ON P.Owner_id = U.id WHERE P.Post_id = ?`;
+    const sql = `SELECT W.*, FirstName, LastName FROM FITAPP_Reactions P Join FITAPP_Users U ON W.Owner_id = U.id WHERE W.Workout_id = ?`;
     
     return await mysql.query(sql, [Workout_id]);
 }
@@ -24,7 +24,7 @@ async function get(id){
 }
 
 async function add(Emoji = Emojis.LOVE, Workout_id, Owner_id){
-    const sql = `INSERT INTO FITAPP_Reactions (created_at, Emoji, Post_id, Owner_id) VALUES ? ;`;
+    const sql = `INSERT INTO FITAPP_Reactions (created_at, Emoji, Workout_id, Owner_id) VALUES ? ;`;
     const params = [[new Date(), Emoji, Workout_id, Owner_id]];
     const res = await mysql.query(sql, [params]);
 
@@ -45,6 +45,6 @@ async function remove(id){
     return await mysql.query(sql, [id]);
 }
 
-const search = async q => await mysql.query(`SELECT id, Text, Post_id FROM FITAPP_Reactions WHERE Text LIKE ? ; `, [`%${q}%`]);
+const search = async q => await mysql.query(`SELECT id, Text, Workout_id FROM FITAPP_Reactions WHERE Text LIKE ? ; `, [`%${q}%`]);
 
 module.exports = {getAll, getForWorkout, get, add, update, remove, search};

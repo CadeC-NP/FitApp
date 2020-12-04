@@ -38,7 +38,7 @@
                     <span class="icon">
                     <i class="fas fa-reply" aria-hidden="true"></i>
                     </span>
-                    Reply    
+                    Repost   
             </a>
             <a href="#" class="card-footer-item" @click.prevent="react">
                     <span class="icon">
